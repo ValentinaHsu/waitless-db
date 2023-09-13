@@ -9,6 +9,15 @@ app.use(bodyParser.json());
 app.use(express.json())
 app.use(cors())
 
+//Trae lo que pido
+// app.get("/menu", async (req, res) => {
+//     const menus = await getAllFoodWithPrisma()
+//     if(!menus) {
+//         throw new Error("The menu is empty")
+//     }
+//     res.json({message: "Success", data: menus})
+// })
+
 app.get("/menu", getAllFoodWithPrisma)
 app.get("/order", getAllOrderWithPrisma)
 

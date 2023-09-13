@@ -1,5 +1,14 @@
 import { useQuery } from '@tanstack/react-query'
+//const myModule = require( '@tanstack/react-query').useQuery;
 import { getFoodWithPrisma, getAllFoodWithPrisma, createFoodWithPrisma, updateFoodWithPrisma, deleteFoodWithPrisma, getAllOrdersWithPrisma } from '../index.js'
+//, getOrderWithPrisma, createOrderWithPrisma, updateOrderWithPrisma, deleteOrderWithPrisma s
+/*
+const getFood = require('../index.js').getFoodWithPrisma;
+const getAllFood = require('../index.js').getAllFoodWithPrisma;
+const createFood = require('../index.js').createFoodWithPrisma;
+const updateFood = require('../index.js').updateFoodWithPrisma;
+const deleteFood = require('../index.js').deleteFoodWithPrisma;
+*/
 
 export function llamarTodoMenu() {
     // Access the client
@@ -38,3 +47,65 @@ export function llamarTodoPedidos() {
     const queryClient = useQueryClient()
     const allOrder = useQuery({ queryKey: ['todoPedidos'], queryFn: getAllOrdersWithPrisma })
 }
+/*export function llamarPedido() {
+  // Access the client
+  const queryClient = useQueryClient()
+  // Queries
+  const menuFood = useQuery({ queryKey: ['menuComida'], queryFn: getFoodWithPrisma })
+}
+export function crearComida() {
+  // Access the client
+  const queryClient = useQueryClient()
+  // Queries
+  const nuevoPedido = useQuery({ queryKey: ['creadoComida'], queryFn: createFoodWithPrisma })
+}
+export function borrarComida() {
+  // Access the client
+  const queryClient = useQueryClient()
+  // Queries
+  const noPedido = useQuery({ queryKey: ['borradoComida'], queryFn: deleteFoodWithPrisma })
+}
+export function actualizarComida() {
+  // Access the client
+  const queryClient = useQueryClient()
+  // Queries
+  const cambioComida = useQuery({ queryKey: ['actualizadoComida'], queryFn: updateFoodWithPrisma })
+}*/
+
+
+/*
+    return(
+      <div>
+        <ul>
+          {allMenu.data?.map((todo) => (
+            <li key={todo.id}>{todo.title}</li>
+          ))}
+          {menuFood.data?.map((todo) => (
+            <li key={todo.id}>{todo.title}</li>
+          ))}
+          {nuevoPedido.data?.map((todo) => (
+            <li key={todo.id}>{todo.title}</li>
+          ))}
+          {noPedido.data?.map((todo) => (
+            <li key={todo.id}>{todo.title}</li>
+          ))}
+          {cambioComida.data?.map((todo) => (
+            <li key={todo.id}>{todo.title}</li>
+          ))}
+        </ul>
+        </div>
+  )
+
+  {menuFood.data?.map((todo) => (
+              <li key={todo.idFood}>{todo.name}</li>
+            ))}
+            {nuevoPedido.data?(todo) => (
+              <li key={todo.idFood}>{todo.name}</li>
+            ))}
+            {noPedido.data?.map((todo) => (
+              <li key={todo.idFood}>{todo.name}</li>
+            ))}
+            {cambioComida.data?.map((todo) => (
+              <li key={todo.idFood}>{todo.name}</li>
+            ))}
+  */
