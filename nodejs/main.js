@@ -17,7 +17,7 @@ app.use(cors())
 //     }
 //     res.json({message: "Success", data: menus})
 // })
-app.get('/', async (req, res)=>{
+app.get('/', async (req, res) => {
     res.json("Bienvenido a la API de WaitLess");
 })
 
