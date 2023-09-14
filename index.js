@@ -1,7 +1,6 @@
 //const mysql = require('../mysql2');
 import dotenv from 'dotenv'
 import { PrismaClient } from "@prisma/client";
-//import { defineDmmfProperty } from '@prisma/client/runtime'
 export const prisma = new PrismaClient();
 //dotenv  = require ('../dotenv');
 dotenv.config()
