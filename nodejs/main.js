@@ -1,7 +1,7 @@
 import bodyParser from 'body-parser';
 import express from 'express';
 import cors from "cors"
-import { getAllFoodWithPrisma, getFoodWithPrisma, createFoodWithPrisma, updateFoodWithPrisma, deleteFoodWithPrisma, getAllOrderWithPrisma, getAllCommandWithPrisma, getCommandWithPrisma, createCommandWithPrisma, deleteCommandWithPrisma } from '../index.js'
+import { getAllFoodWithPrisma, getFoodWithPrisma, createFoodWithPrisma, updateFoodWithPrisma, deleteFoodWithPrisma, getAllOrderWithPrisma, getAllCommandWithPrisma, getCommandWithPrisma, getCommandWithPrismaByTable, createCommandWithPrisma, deleteCommandWithPrisma } from '../index.js'
 const app = express();
 const PORT = 3002;
 
@@ -42,6 +42,14 @@ app.get("/orders/:id", async (req, res) => {
 app.get("/command/:id", async (req, res) => {
     const id = parseInt(req.params.id)
     const command = await getCommandByPrismaID(id)
+    if (!command) {
+        throw new Error("The command is empty")
+    }
+    res.json(command)
+})
+app.get("/command/:table", async (req, res) => {
+    const table = parseInt(req.params.table)
+    const command = await getCommandWithPrismaByTable(table)
     if (!command) {
         throw new Error("The command is empty")
     }

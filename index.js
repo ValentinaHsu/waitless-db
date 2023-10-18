@@ -275,6 +275,22 @@ export const getCommandWithPrisma = async (id) => {
     }
 }
 
+export const getCommandWithPrismaByTable = async (id) => {
+    try {
+        const getCommand = await prisma.commands.findUnique({
+            where: {
+                table: table
+            }
+        })
+
+        if (!getCommand) return console.log("command not found")
+
+        return getCommand
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 export const createCommandWithPrisma = async (id, sendedAt, total, table) => {
     try {
         const createCommand = await prisma.commands.create({
