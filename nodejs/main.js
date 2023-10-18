@@ -1,9 +1,9 @@
 import bodyParser from 'body-parser';
 import express from 'express';
 import cors from "cors"
-import { getAllFoodWithPrisma, getFoodWithPrisma, createFoodWithPrisma, updateFoodWithPrisma, deleteFoodWithPrisma, getAllOrderWithPrisma } from '../index.js'
+import { getAllFoodWithPrisma, getFoodWithPrisma, createFoodWithPrisma, updateFoodWithPrisma, deleteFoodWithPrisma, getAllOrderWithPrisma, getAllCommandWithPrisma, getCommandWithPrisma, createCommandWithPrisma, deleteCommandWithPrisma } from '../index.js'
 const app = express();
-const PORT = 3001;
+const PORT = 3002;
 
 app.use(bodyParser.json());
 app.use(express.json())
@@ -23,7 +23,7 @@ app.get('/', async (req, res) => {
 
 app.get("/menu", getAllFoodWithPrisma)
 app.get("/order", getAllOrderWithPrisma)
-
+app.get("/command", getAllCommandWithPrisma)
 
 //Trae lo que quiero según su ID
 app.get("/menu/:id", async (req, res) => {
@@ -38,6 +38,14 @@ app.get("/orders/:id", async (req, res) => {
         throw new Error("The order is empty")
     }
     res.json(orders)
+})
+app.get("/command/:id", async (req, res) => {
+    const id = parseInt(req.params.id)
+    const command = await getCommandByPrismaID(id)
+    if (!command) {
+        throw new Error("The command is empty")
+    }
+    res.json(command)
 })
 app.get("/orders", async (req, res) => {
     const orders = await getAllOrderWithPrisma()

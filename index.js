@@ -138,7 +138,8 @@ export const createOrderWithPrisma = async (aclaration, sendedAt) => {
             data: {
                 id: id,
                 aclaration: aclaration,
-                sendedAt: sendedAt
+                sendedAt: sendedAt,
+                commandsId: command
             }
         })
 
@@ -157,12 +158,9 @@ export const updateOrderWithPrisma = async (name, description, category, price, 
                 id: id
             },
             data: {
-                name: name,
-                description: description,
-                category: category,
-                price: price,
-                image: image,
-                sideDish: sideDish
+                aclaration: aclaration,
+                sendedAt: sendedAt,
+                commandsId: command
             }
         })
 
@@ -243,6 +241,75 @@ export const deleteCustomerWithPrisma = async (name, id) => {
         if (!deleteCustomer) return console.log("not food found")
 
         return deleteCustomer
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+// COMMANDS / Comanda
+export const getAllCommandWithPrisma = async (req, res) => {
+    try {
+        const getCommand = await prisma.commands.findMany()
+
+        if (!getCommand) return console.log("command not found")
+
+        return res.json({ message: "Command found", data: getCommand })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const getCommandWithPrisma = async (id) => {
+    try {
+        const getCommand = await prisma.commands.findUnique({
+            where: {
+                id: id
+            }
+        })
+
+        if (!getCommand) return console.log("command not found")
+
+        return getCommand
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const createCommandWithPrisma = async (id, sendedAt, total, table) => {
+    try {
+        const createCommand = await prisma.commands.create({
+            data: {
+                id: id,
+                sendedAt: sendedAt,
+                total: total,
+                table: table
+            }
+        })
+
+        if (!createCommand) return console.log("command not found")
+
+        return createCommand
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const deleteCommandWithPrisma = async (id) => {
+    try {
+        const deleteCustomer = await prisma.customer.delete({
+            where: {
+                id: id
+            },
+            data: {
+                sendedAt: sendedAt,
+                total: total,
+                table: table
+            }
+        })
+
+        if (!deleteCommand) return console.log("command not found")
+
+        return deleteCommand
     } catch (error) {
         console.log(error)
     }

@@ -8,15 +8,16 @@ datasource db {
 }
 
 model Food {
-  id          Int                   @id @default(autoincrement())
-  category    String
-  name        String
-  price       Int
-  description String?
-  sideDish    Boolean
-  image       String
-  video       String?
-  ordersFood  OrderFoodbyCustumer[]
+  id            Int                   @id @default(autoincrement())
+  category      String
+  name          String
+  price         Int
+  description   String?
+  sideDish      Boolean
+  sideDish_name String?
+  image         String
+  video         String?
+  ordersFood    OrderFoodbyCustumer[]
 }
 
 model Order {
