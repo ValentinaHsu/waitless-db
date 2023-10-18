@@ -9,14 +9,6 @@ app.use(bodyParser.json());
 app.use(express.json())
 app.use(cors())
 
-//Trae lo que pido
-// app.get("/menu", async (req, res) => {
-//     const menus = await getAllFoodWithPrisma()
-//     if(!menus) {
-//         throw new Error("The menu is empty")
-//     }
-//     res.json({message: "Success", data: menus})
-// })
 app.get('/', async (req, res) => {
     res.json("Bienvenido a la API de WaitLess");
 })
@@ -39,6 +31,14 @@ app.get("/orders/:id", async (req, res) => {
     }
     res.json(orders)
 })
+app.get("/orderes", async (req, res) => {
+    const orders = await getAllOrderWithPrisma()
+    if (!orders) {
+        throw new Error("The order list is empty")
+    }
+    res.json({ message: "Success", data: orders })
+})
+
 app.get("/command/:id", async (req, res) => {
     const id = parseInt(req.params.id)
     const command = await getCommandByPrismaID(id)
@@ -74,6 +74,14 @@ app.post("/menu", async (req, res) => {
     const { title, contents } = req.body
     const nuevoPedido = await createFoodWithPrisma(title, contents)
     res.status(201).json(nuevoPedido)
+})
+
+app.post("/ordersFood", async (req, res) => {
+    const { foodId, amount } = req.body
+    const customerId = "";
+    const orderId = "";
+    const agregarComida = await addFoodToOrder(orderId, foodId, customerId, amount)
+    res.status(201).json(agregarComida)
 })
 //Modifica de menu lo que quieras
 app.put("/menu/:id", async (req, res) => {

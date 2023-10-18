@@ -55,6 +55,35 @@ export const createFoodWithPrisma = async (name, description, category, price, i
     }
 }
 
+export const addFoodToOrder = async (orderId, foodId, customerId, amount) => {
+    try {
+        const newFood = await prisma.orderFoodbyCustumer.create({
+            data: {
+                quantity: amount,
+                order: {
+                    connect: {
+                        id: orderId
+                    }
+                },
+                food: {
+                    connect: {
+                        id: foodId
+                    }
+                },
+                customer: {
+                    connect: {
+                        id: customerId
+                    }
+                }
+            }
+        });
+
+        return newFood
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 export const updateFoodWithPrisma = async (name, description, category, price, image, sideDish, id) => {
     try {
         const updateFood = await prisma.food.update({
@@ -180,7 +209,8 @@ export const deleteOrderWithPrisma = async (aclaration, sendedAt, id) => {
             },
             data: {
                 aclaration: aclaration,
-                sendedAt: sendedAt
+                sendedAt: sendedAt,
+                commandsId: commandsId
             }
         })
 
