@@ -1,7 +1,7 @@
 import bodyParser from 'body-parser';
 import express from 'express';
 import cors from "cors"
-import { getAllFoodWithPrisma, getFoodWithPrisma, createFoodWithPrisma, updateFoodWithPrisma, deleteFoodWithPrisma, addFoodToOrder, getAllOrderWithPrisma, getAllCommandWithPrisma, getCommandWithPrismaByTable, createCommandWithPrisma, deleteCommandWithPrisma } from '../index.js'
+import { getAllFoodWithPrisma, getFoodWithPrisma, createFoodWithPrisma, updateFoodWithPrisma, deleteFoodWithPrisma, addFoodToOrder, getAllOrderWithPrisma, getAllCommandWithPrisma, getCommandByPrismaID, getCommandWithPrismaByTable, createCommandWithPrisma, deleteCommandWithPrisma } from '../index.js'
 const app = express();
 const PORT = 3002;
 
