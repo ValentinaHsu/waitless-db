@@ -64,7 +64,7 @@ app.get("/orders", async (req, res) => {
 })
 
 app.get("/orderFoodByCustumer", async (req, res) => {
-    const orderFoodByCustumer = await getAllOrderFoodByCostumerWithPrisma()
+    const orderFoodByCustumer = await getAllOrderFoodByCustumerWithPrisma()
     if (!orderFoodByCustumer) {
         throw new Error("Thelist is empty")
     }
@@ -72,7 +72,7 @@ app.get("/orderFoodByCustumer", async (req, res) => {
 })
 
 app.get("/orderFoodByCustumer/:id", async (req, res) => {
-    const orderFoodByCustumer = await getOrderFoodByCostumerByPrismaID()
+    const orderFoodByCustumer = await getOrderFoodByCustumerByPrismaID()
     if (!orderFoodByCustumer) {
         throw new Error("The list is empty")
     }
