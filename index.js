@@ -352,9 +352,9 @@ export const getOrderFoodByCustumerByPrismaID = async (id) => {
             }
         })
 
-        if (!getOrderFoodByCustumer) return console.log("ByCustumers not found")
+        if (!OrderFoodByCustumer) return console.log("ByCustumers not found")
 
-        return getOrderFoodByCustumer
+        return OrderFoodByCustumer
     } catch (error) {
         console.log(error)
     }
