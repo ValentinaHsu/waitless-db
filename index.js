@@ -346,7 +346,7 @@ export const getAllOrderFoodByCustumerWithPrisma = async (req, res) => {
 }
 export const getOrderFoodByCustumerByPrismaID = async (id) => {
     try {
-        const OrderFoodByCustumer = await prisma.orderFoodByUostumer.findUnique({
+        const OrderFoodByCustumer = await prisma.orderFoodByCustumer.findUnique({
             where: {
                 id: id
             }
