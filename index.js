@@ -289,7 +289,7 @@ export const getAllCommandWithPrisma = async (req, res) => {
     }
 }
 
-export const getCommandWithPrisma = async (id) => {
+export const getCommandWithPrismaByID = async (id) => {
     try {
         const getCommand = await prisma.commands.findUnique({
             where: {
