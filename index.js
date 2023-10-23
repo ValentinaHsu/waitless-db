@@ -55,35 +55,6 @@ export const createFoodWithPrisma = async (name, description, category, price, i
     }
 }
 
-export const addFoodToOrder = async (orderId, foodId, customerId, amount) => {
-    try {
-        const newFood = await prisma.orderFoodbyCustumer.create({
-            data: {
-                quantity: amount,
-                order: {
-                    connect: {
-                        id: orderId
-                    }
-                },
-                food: {
-                    connect: {
-                        id: foodId
-                    }
-                },
-                customer: {
-                    connect: {
-                        id: customerId
-                    }
-                }
-            }
-        });
-
-        return newFood
-    } catch (error) {
-        console.log(error)
-    }
-}
-
 export const updateFoodWithPrisma = async (name, description, category, price, image, sideDish, id) => {
     try {
         const updateFood = await prisma.food.update({
@@ -356,6 +327,62 @@ export const deleteCommandWithPrisma = async (id) => {
         if (!deleteCommand) return console.log("command not found")
 
         return deleteCommand
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+// OrderFoodByCostumer
+export const getAllOrderFoodByCostumerWithPrisma = async (req, res) => {
+    try {
+        const getOrderFoodByCostumer = await prisma.orderFoodByCostumer.findMany()
+
+        if (!getOrderFoodByCostumer) return console.log("order not found")
+
+        return res.json({ message: "Order found", data: getOrderFoodByCostumer })
+    } catch (error) {
+        console.log(error)
+    }
+}
+export const getOrderFoodByCostumerByPrismaID = async (id) => {
+    try {
+        const OrderFoodByCostumer = await prisma.orderFoodByCostumer.findUnique({
+            where: {
+                id: id
+            }
+        })
+
+        if (!getOrderFoodByCostumer) return console.log("not Order found")
+
+        return getOrderFoodByCostumer
+    } catch (error) {
+        console.log(error)
+    }
+}
+export const addFoodToOrder = async (orderId, foodId, customerId, amount) => {
+    try {
+        const newFood = await prisma.orderFoodbyCustumer.create({
+            data: {
+                quantity: amount,
+                order: {
+                    connect: {
+                        id: orderId
+                    }
+                },
+                food: {
+                    connect: {
+                        id: foodId
+                    }
+                },
+                customer: {
+                    connect: {
+                        id: customerId
+                    }
+                }
+            }
+        });
+
+        return newFood
     } catch (error) {
         console.log(error)
     }

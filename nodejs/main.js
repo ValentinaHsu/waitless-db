@@ -63,6 +63,22 @@ app.get("/orders", async (req, res) => {
     res.json({ message: "Success", data: orders })
 })
 
+app.get("/orderFoodByCustumer", async (req, res) => {
+    const orderFoodByCustumer = await getAllOrderFoodByCostumerWithPrisma()
+    if (!orderFoodByCustumer) {
+        throw new Error("The order list is empty")
+    }
+    res.json({ message: "Success", data: orders })
+})
+
+app.get("/orderFoodByCustumer/:id", async (req, res) => {
+    const orderFoodByCustumer = await getAllOrderFoodByCostumerWithPrisma()
+    if (!orderFoodByCustumer) {
+        throw new Error("The order list is empty")
+    }
+    res.json({ message: "Success", data: orders })
+})
+
 /*app.get("/order/:id", async (req, res) => {
     const id = parseInt(req.params.id)
     const menu = await getFoodWithPrisma(id)
