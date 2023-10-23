@@ -337,7 +337,7 @@ export const getAllOrderFoodByCostumerWithPrisma = async (req, res) => {
     try {
         const getOrderFoodByCostumer = await prisma.orderFoodByCostumer.findMany()
 
-        if (!getOrderFoodByCostumer) return console.log("order not found")
+        if (!getOrderFoodByCostumer) return console.log("orderByCostumers not found")
 
         return res.json({ message: "Order found", data: getOrderFoodByCostumer })
     } catch (error) {
@@ -352,7 +352,7 @@ export const getOrderFoodByCostumerByPrismaID = async (id) => {
             }
         })
 
-        if (!getOrderFoodByCostumer) return console.log("not Order found")
+        if (!getOrderFoodByCostumer) return console.log("ByCostumers not found")
 
         return getOrderFoodByCostumer
     } catch (error) {
