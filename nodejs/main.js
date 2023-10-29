@@ -16,6 +16,7 @@ app.get('/', async (req, res) => {
 app.get("/menu", getAllFoodWithPrisma)
 app.get("/order", getAllOrderWithPrisma)
 app.get("/command", getAllCommandWithPrisma)
+app.get("/orderByCustomer", getAllOrderByCostumer)
 
 //Trae lo que quiero según su ID
 app.get("/menu/:id", async (req, res) => {
@@ -61,13 +62,6 @@ app.get("/orders", async (req, res) => {
         throw new Error("The order list is empty")
     }
     res.json({ message: "Success", data: orders })
-})
-app.get("/orderByCustomer", async (res) => {
-    const orderByCustomer = await getAllOrderByCostumer()
-    if (!orderByCustomer) {
-        throw new Error("The order list is empty")
-    }
-    res.json({ message: "Success", data: orderByCustomer })
 })
 app.get("/orderByCustomer/:id", async (req, res) => {
     const id = parseInt(req.params.id)
