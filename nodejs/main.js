@@ -1,7 +1,7 @@
 import bodyParser from 'body-parser';
 import express from 'express';
 import cors from "cors"
-import { getAllFoodWithPrisma, getFoodWithPrisma, createFoodWithPrisma, updateFoodWithPrisma, deleteFoodWithPrisma, addFoodToOrder, getAllOrderWithPrisma, getAllCommandWithPrisma, getCommandWithPrismaByID, getCommandWithPrismaByTable, createCommandWithPrisma, deleteCommandWithPrisma, getAllOrderFoodByCustomerWithPrisma, getOrderFoodByCustomerByPrismaID } from '../index.js'
+import { getAllFoodWithPrisma, getFoodWithPrisma, createFoodWithPrisma, updateFoodWithPrisma, deleteFoodWithPrisma, addFoodToOrder, getAllOrderWithPrisma, getAllCommandWithPrisma, getCommandWithPrismaByID, getCommandWithPrismaByTable, createCommandWithPrisma, deleteCommandWithPrisma, getAllOrderByCostumer, getOrderByCustomerByID } from '../index.js'
 const app = express();
 const PORT = 3002;
 
@@ -62,23 +62,21 @@ app.get("/orders", async (req, res) => {
     }
     res.json({ message: "Success", data: orders })
 })
-
-app.get("/orderFoodByCustomer", async (req, res) => {
-    const orderFoodByCustomer = await getAllOrderFoodByCustomerWithPrisma()
-    if (!orderFoodByCustomer) {
-        throw new Error("Thelist is empty")
+app.get("/orderByCustomer", async (res) => {
+    const orderByCustomer = await getAllOrderByCostumer()
+    if (!orderByCustomer) {
+        throw new Error("The order list is empty")
     }
-    res.json({ message: "Success", data: orderFoodByCustomer })
+    res.json({ message: "Success", data: orderByCustomer })
 })
-
-app.get("/orderFoodByCustomer/:id", async (req, res) => {
-    const orderFoodByCustomer = await getOrderFoodByCustomerByPrismaID()
-    if (!orderFoodByCustomer) {
-        throw new Error("The list is empty")
+app.get("/orderByCustomer/:id", async (req, res) => {
+    const id = parseInt(req.params.id)
+    const orderByCustomer = await getOrderByCustomerByID(id)
+    if (!orderByCustomer) {
+        throw new Error("OrderByCustomer is empty")
     }
-    res.json({ message: "Success", data: orderFoodByCustomer })
+    res.json(orderByCustomer)
 })
-
 /*app.get("/order/:id", async (req, res) => {
     const id = parseInt(req.params.id)
     const menu = await getFoodWithPrisma(id)
