@@ -63,7 +63,7 @@ app.get("/orders", async (req, res) => {
     }
     res.json({ message: "Success", data: orders })
 })
-app.get("/orderByCustomer", async (res) => {
+app.get("/ordersByCustomer", async (res) => {
     const orderByCustomer = await getAllOrderByCostumer()
     if (!orderByCustomer) {
         throw new Error("The order list is empty")
@@ -78,19 +78,12 @@ app.get("/orderByCustomer/:id", async (req, res) => {
     }
     res.json(orderByCustomer)
 })
-/*app.get("/order/:id", async (req, res) => {
-    const id = parseInt(req.params.id)
-    const menu = await getFoodWithPrisma(id)
-    res.json(menu)
-})*/
-
 //Agrega a menu lo que quieras
 app.post("/menu", async (req, res) => {
     const { title, contents } = req.body
     const nuevoPedido = await createFoodWithPrisma(title, contents)
     res.status(201).json(nuevoPedido)
 })
-
 app.post("/ordersFood", async (req, res) => {
     const { foodId, amount } = req.body
     const customerId = "";

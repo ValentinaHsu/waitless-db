@@ -358,7 +358,6 @@ export const getOrderByCustomerByID = async (id) => {
         console.log(error)
     }
 }
-
 export const addFoodToOrder = async (orderId, foodId, customerId, amount) => {
     try {
         const newFood = await prisma.orderFoodbyCustomer.create({
