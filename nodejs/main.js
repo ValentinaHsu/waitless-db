@@ -1,7 +1,7 @@
 import bodyParser from 'body-parser';
 import express from 'express';
 import cors from "cors"
-import { getAllFoodWithPrisma, getFoodWithPrisma, createFoodWithPrisma, updateFoodWithPrisma, deleteFoodWithPrisma, addFoodToOrder, getAllOrderWithPrisma, getAllCommandWithPrisma, getCommandWithPrismaByID, getCommandWithPrismaByTable, createCommandWithPrisma, deleteCommandWithPrisma, getAllOrderFoodByCustumerWithPrisma, getOrderFoodByCustumerByPrismaID } from '../index.js'
+import { getAllFoodWithPrisma, getFoodWithPrisma, createFoodWithPrisma, updateFoodWithPrisma, deleteFoodWithPrisma, addFoodToOrder, getAllOrderWithPrisma, getAllCommandWithPrisma, getCommandWithPrismaByID, getCommandWithPrismaByTable, createCommandWithPrisma, deleteCommandWithPrisma, getAllOrderFoodByCustomerWithPrisma, getOrderFoodByCustomerByPrismaID } from '../index.js'
 const app = express();
 const PORT = 3002;
 
@@ -63,20 +63,20 @@ app.get("/orders", async (req, res) => {
     res.json({ message: "Success", data: orders })
 })
 
-app.get("/orderFoodByCustumer", async (req, res) => {
-    const orderFoodByCustumer = await getAllOrderFoodByCustumerWithPrisma()
-    if (!orderFoodByCustumer) {
+app.get("/orderFoodByCustomer", async (req, res) => {
+    const orderFoodByCustomer = await getAllOrderFoodByCustomerWithPrisma()
+    if (!orderFoodByCustomer) {
         throw new Error("Thelist is empty")
     }
-    res.json({ message: "Success", data: orderFoodByCustumer })
+    res.json({ message: "Success", data: orderFoodByCustomer })
 })
 
-app.get("/orderFoodByCustumer/:id", async (req, res) => {
-    const orderFoodByCustumer = await getOrderFoodByCustumerByPrismaID()
-    if (!orderFoodByCustumer) {
+app.get("/orderFoodByCustomer/:id", async (req, res) => {
+    const orderFoodByCustomer = await getOrderFoodByCustomerByPrismaID()
+    if (!orderFoodByCustomer) {
         throw new Error("The list is empty")
     }
-    res.json({ message: "Success", data: orderFoodByCustumer })
+    res.json({ message: "Success", data: orderFoodByCustomer })
 })
 
 /*app.get("/order/:id", async (req, res) => {

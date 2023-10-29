@@ -332,36 +332,36 @@ export const deleteCommandWithPrisma = async (id) => {
     }
 }
 
-// OrderFoodByCustumer
-export const getAllOrderFoodByCustumerWithPrisma = async (req, res) => {
+// OrderFoodByCustomer
+export const getAllOrderFoodByCustomerWithPrisma = async (req, res) => {
     try {
-        const getOrderFoodByCustumer = await prisma.orderFoodByCustumer.findMany()
+        const getOrderFoodByCustomer = await prisma.orderFoodByCustumer.findMany()
 
-        if (!getOrderFoodByCustumer) return console.log("orderByCustumers not found")
+        if (!getOrderFoodByCustomer) return console.log("orderByCustomer not found")
 
-        return res.json({ message: "Order found", data: getOrderFoodByCustumer })
+        return res.json({ message: "Order found", data: getOrderFoodByCustomer })
     } catch (error) {
         console.log(error)
     }
 }
-export const getOrderFoodByCustumerByPrismaID = async (id) => {
+export const getOrderFoodByCustomerByPrismaID = async (id) => {
     try {
-        const OrderFoodByCustumer = await prisma.orderFoodByCustumer.findUnique({
+        const OrderFoodByCustomer = await prisma.orderFoodByCustumer.findUnique({
             where: {
                 id: id
             }
         })
 
-        if (!OrderFoodByCustumer) return console.log("ByCustumers not found")
+        if (!OrderFoodByCustomer) return console.log("ByCustomer not found")
 
-        return OrderFoodByCustumer
+        return OrderFoodByCustomer
     } catch (error) {
         console.log(error)
     }
 }
 export const addFoodToOrder = async (orderId, foodId, customerId, amount) => {
     try {
-        const newFood = await prisma.orderFoodbyCustumer.create({
+        const newFood = await prisma.orderFoodbyCustomer.create({
             data: {
                 quantity: amount,
                 order: {
