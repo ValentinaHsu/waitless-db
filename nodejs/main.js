@@ -54,7 +54,7 @@ app.get("/orderes", async (req, res) => {
     res.json({ message: "Success", data: orders })
 })
 
-app.get("/commandID/:id", async (req, res) => {
+app.get("/command/:id", async (req, res) => {
     const id = parseInt(req.params.id)
     const command = await getCommandWithPrismaByID(id)
     if (!command) {
