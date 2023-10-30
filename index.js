@@ -333,7 +333,7 @@ export const deleteCommandWithPrisma = async (id) => {
 }
 
 // OrderFoodByCustomer
-export const getAllOrderByCostumer = async (res) => {
+export const getAllOrderByCostumer = async (req, res) => {
     try {
         const getOrderByCustomer = await prisma.orderFoodbyCustumer.findMany()
 
