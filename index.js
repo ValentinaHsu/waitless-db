@@ -276,7 +276,7 @@ export const getCommandWithPrismaByID = async (id) => {
     }
 }
 
-export const getCommandWithPrismaByTable = async (id) => {
+export const getCommandWithPrismaByTable = async (table) => {
     try {
         const getCommand = await prisma.commands.findUnique({
             where: {
