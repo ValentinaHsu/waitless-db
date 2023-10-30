@@ -287,7 +287,7 @@ export const getCommandWithPrismaByTable = async (table) => {
         if (!getCommand) return console.log("command not found")
 
         //return res.json({ message: "Command found", data: getCommand })
-        return getCommand[-1]
+        return getCommand
     } catch (error) {
         console.log(error)
     }
