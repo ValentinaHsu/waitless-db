@@ -54,7 +54,7 @@ app.get("/orderes", async (req, res) => {
     res.json({ message: "Success", data: orders })
 })
 
-app.get("/command/:id", async (req, res) => {
+app.get("/commandID/:id", async (req, res) => {
     const id = parseInt(req.params.id)
     const command = await getCommandWithPrismaByID(id)
     if (!command) {
@@ -62,7 +62,7 @@ app.get("/command/:id", async (req, res) => {
     }
     res.json(command)
 })
-app.get("/command/:table", async (req, res) => {
+app.get("/commandTable/:table", async (req, res) => {
     const table = parseInt(req.params.table)
     const command = await getCommandWithPrismaByTable(table)
     if (!command) {
