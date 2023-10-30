@@ -278,7 +278,7 @@ export const getCommandWithPrismaByID = async (id) => {
 
 export const getCommandWithPrismaByTable = async (table) => {
     try {
-        const getCommand = await prisma.commands.findUnique({
+        const getCommand = await prisma.commands.findMany({
             where: {
                 tableId: table
             }
@@ -287,7 +287,7 @@ export const getCommandWithPrismaByTable = async (table) => {
         if (!getCommand) return console.log("command not found")
 
         //return res.json({ message: "Command found", data: getCommand })
-        return getCommand
+        return getCommand[-1]
     } catch (error) {
         console.log(error)
     }
