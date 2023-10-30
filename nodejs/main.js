@@ -77,12 +77,12 @@ app.get("/orders", async (req, res) => {
     }
     res.json({ message: "Success", data: orders })
 })
-app.get("/ordersByCustomer", async (res) => {
+app.get("/ordersByCustomer", async (req, res) => {
     const orderByCustomer = await getAllOrderByCostumer()
     if (!orderByCustomer) {
         throw new Error("The order list is empty")
     }
-    res.json({ message: "Success", data: orderByCustomer })
+    res.json(orderByCustomer )
 })
 app.get("/orderByCustomer/:id", async (req, res) => {
     const id = parseInt(req.params.id)
