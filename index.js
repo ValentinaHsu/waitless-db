@@ -280,7 +280,7 @@ export const getCommandWithPrismaByTable = async (table) => {
     try {
         const getCommand = await prisma.commands.findUnique({
             where: {
-                table: table
+                tableId: table
             }
         })
 
