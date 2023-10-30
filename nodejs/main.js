@@ -1,6 +1,7 @@
 import bodyParser from 'body-parser';
 import express from 'express';
 import cors from "cors"
+<<<<<<< HEAD
 import { getAllFoodWithPrisma, 
     getFoodWithPrisma, 
     createFoodWithPrisma, 
@@ -13,8 +14,9 @@ import { getAllFoodWithPrisma,
     getCommandWithPrismaByTable, 
     createCommandWithPrisma, 
     deleteCommandWithPrisma, 
-    getAllOrderFoodByCustumerWithPrisma, 
-    getOrderFoodByCustumerByPrismaID } from '../index.js'
+    getAllOrderByCostumer, 
+    getOrderByCustomerByID } from '../index.js'
+
 const app = express();
 const PORT = 3002;
 
@@ -29,6 +31,7 @@ app.get('/', async (req, res) => {
 app.get("/menu", getAllFoodWithPrisma)
 app.get("/order", getAllOrderWithPrisma)
 app.get("/command", getAllCommandWithPrisma)
+app.get("/orderByCustomer", getAllOrderByCostumer)
 
 //Trae lo que quiero según su ID
 app.get("/menu/:id", async (req, res) => {
@@ -75,36 +78,27 @@ app.get("/orders", async (req, res) => {
     }
     res.json({ message: "Success", data: orders })
 })
-
-app.get("/orderFoodByCustumer", async (req, res) => {
-    const orderFoodByCustumer = await getAllOrderFoodByCustumerWithPrisma()
-    if (!orderFoodByCustumer) {
-        throw new Error("Thelist is empty")
+app.get("/ordersByCustomer", async (res) => {
+    const orderByCustomer = await getAllOrderByCostumer()
+    if (!orderByCustomer) {
+        throw new Error("The order list is empty")
     }
-    res.json({ message: "Success", data: orderFoodByCustumer })
+    res.json({ message: "Success", data: orderByCustomer })
 })
-
-app.get("/orderFoodByCustumer/:id", async (req, res) => {
-    const orderFoodByCustumer = await getOrderFoodByCustumerByPrismaID()
-    if (!orderFoodByCustumer) {
-        throw new Error("The list is empty")
-    }
-    res.json({ message: "Success", data: orderFoodByCustumer })
-})
-
-/*app.get("/order/:id", async (req, res) => {
+app.get("/orderByCustomer/:id", async (req, res) => {
     const id = parseInt(req.params.id)
-    const menu = await getFoodWithPrisma(id)
-    res.json(menu)
-})*/
-
+    const orderByCustomer = await getOrderByCustomerByID(id)
+    if (!orderByCustomer) {
+        throw new Error("OrderByCustomer is empty")
+    }
+    res.json(orderByCustomer)
+})
 //Agrega a menu lo que quieras
 app.post("/menu", async (req, res) => {
     const { title, contents } = req.body
     const nuevoPedido = await createFoodWithPrisma(title, contents)
     res.status(201).json(nuevoPedido)
 })
-
 app.post("/ordersFood", async (req, res) => {
     const { foodId, amount } = req.body
     const customerId = "";

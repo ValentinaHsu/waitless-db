@@ -323,7 +323,6 @@ export const deleteCommandWithPrisma = async (id) => {
                 table: table
             }
         })
-
         if (!deleteCommand) return console.log("command not found")
 
         return deleteCommand
@@ -332,36 +331,36 @@ export const deleteCommandWithPrisma = async (id) => {
     }
 }
 
-// OrderFoodByCustumer
-export const getAllOrderFoodByCustumerWithPrisma = async (req, res) => {
+// OrderFoodByCustomer
+export const getAllOrderByCostumer = async (res) => {
     try {
-        const getOrderFoodByCustumer = await prisma.orderFoodByCustumer.findMany()
+        const getOrderByCustomer = await prisma.orderFoodbyCustumer.findMany()
 
-        if (!getOrderFoodByCustumer) return console.log("orderByCustumers not found")
+        if (!getOrderByCustomer) return console.log("Order by Customer not found")
 
-        return res.json({ message: "Order found", data: getOrderFoodByCustumer })
+        return res.json({ message: "Order by Customer found", data: getOrderByCustomer })
     } catch (error) {
         console.log(error)
     }
 }
-export const getOrderFoodByCustumerByPrismaID = async (id) => {
+export const getOrderByCustomerByID = async (id) => {
     try {
-        const OrderFoodByCustumer = await prisma.orderFoodByCustumer.findUnique({
+        const getOrderByCustomerByID = await prisma.orderFoodbyCustumer.findUnique({
             where: {
                 id: id
             }
         })
 
-        if (!OrderFoodByCustumer) return console.log("ByCustumers not found")
+        if (!getOrderByCustomerByID) return console.log("OrderById not found")
 
-        return OrderFoodByCustumer
+        return getOrderByCustomerByID
     } catch (error) {
         console.log(error)
     }
 }
 export const addFoodToOrder = async (orderId, foodId, customerId, amount) => {
     try {
-        const newFood = await prisma.orderFoodbyCustumer.create({
+        const newFood = await prisma.orderFoodbyCustomer.create({
             data: {
                 quantity: amount,
                 order: {
