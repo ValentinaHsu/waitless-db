@@ -13,7 +13,7 @@ import { getAllFoodWithPrisma,
     getCommandWithPrismaByTable, 
     createCommandWithPrisma, 
     deleteCommandWithPrisma, 
-    getAllOrderByCostumer, 
+    getAllOrderByCustomer, 
     getOrderByCustomerByID } from '../index.js'
 
 const app = express();
@@ -30,7 +30,7 @@ app.get('/', async (req, res) => {
 app.get("/menu", getAllFoodWithPrisma)
 app.get("/order", getAllOrderWithPrisma)
 app.get("/command", getAllCommandWithPrisma)
-app.get("/orderByCustomer", getAllOrderByCostumer)
+app.get("/orderByCustomer", getAllOrderByCustomer)
 
 //Trae lo que quiero según su ID
 app.get("/menu/:id", async (req, res) => {
@@ -78,7 +78,7 @@ app.get("/orders", async (req, res) => {
     res.json({ message: "Success", data: orders })
 })
 app.get("/ordersByCustomer", async (req, res) => {
-    const orderByCustomer = await getAllOrderByCostumer()
+    const orderByCustomer = await getAllOrderByCustomer()
     if (!orderByCustomer) {
         throw new Error("The order list is empty")
     }
@@ -99,10 +99,10 @@ app.post("/menu", async (req, res) => {
     res.status(201).json(nuevoPedido)
 })
 app.post("/ordersFood", async (req, res) => {
-    const { foodId, amount } = req.body
+    const { foodId, quantity } = req.body
     const customerId = "";
     const orderId = "";
-    const agregarComida = await addFoodToOrder(orderId, foodId, customerId, amount)
+    const agregarComida = await addFoodToOrder(orderId, foodId, customerId, quantity)
     res.status(201).json(agregarComida)
 })
 //Modifica de menu lo que quieras

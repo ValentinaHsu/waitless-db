@@ -333,7 +333,7 @@ export const deleteCommandWithPrisma = async (id) => {
 }
 
 // OrderFoodByCustomer
-export const getAllOrderByCostumer = async (req, res) => {
+export const getAllOrderByCustomer = async (req, res) => {
     try {
         const getOrderByCustomer = await prisma.orderFoodbyCustumer.findMany()
 
@@ -359,24 +359,25 @@ export const getOrderByCustomerByID = async (id) => {
         console.log(error)
     }
 }
-export const addFoodToOrder = async (orderId, foodId, customerId, amount) => {
+export const addFoodToOrder = async (orderId, foodId, customerId, quantity) => {
     try {
-        const newFood = await prisma.orderFoodbyCustomer.create({
+
+        const newFood = await prisma.orderFoodbyCustumer.create({
             data: {
-                quantity: amount,
+                quantity: parseInt(quantity),
                 order: {
                     connect: {
-                        id: orderId
+                        id: parseInt(orderId)
                     }
                 },
                 food: {
                     connect: {
-                        id: foodId
+                        id: parseInt(foodId)
                     }
                 },
                 customer: {
                     connect: {
-                        id: customerId
+                        id: parseInt(customerId)
                     }
                 }
             }

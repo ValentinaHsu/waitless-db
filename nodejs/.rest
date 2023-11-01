@@ -1,1 +1,9 @@
-GET http://localhost:3002/command
+POST http://localhost:3002/ordersFood
+Content-Type: application/json
+
+{  
+    "orderId": 4,
+    "foodId": 4,
+    "customerId": 1,
+    "quantity": 2
+}
