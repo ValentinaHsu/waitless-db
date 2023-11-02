@@ -99,9 +99,7 @@ app.post("/menu", async (req, res) => {
     res.status(201).json(nuevoPedido)
 })
 app.post("/ordersFood", async (req, res) => {
-    const { foodId, quantity } = req.body
-    const customerId = "";
-    const orderId = "";
+    const { orderId, foodId, customerId, quantity } = req.body
     const agregarComida = await addFoodToOrder(orderId, foodId, customerId, quantity)
     res.status(201).json(agregarComida)
 })
