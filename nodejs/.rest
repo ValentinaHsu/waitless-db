@@ -5,5 +5,6 @@ Content-Type: application/json
     "orderId": 4,
     "foodId": 4,
     "customerId": 1,
-    "quantity": 2
+    "quantity": 2,
+    "state": "enviado"
 }
