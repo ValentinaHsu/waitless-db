@@ -99,10 +99,9 @@ app.post("/menu", async (req, res) => {
     res.status(201).json(nuevoPedido)
 })
 app.post("/ordersFood", async (req, res) => {
-    const { foodId, quantity, state} = req.body
-    const customerId = "";
-    const orderId = "";
-    const agregarComida = await addFoodToOrder(orderId, foodId, customerId, quantity, state) 
+
+    const { orderId, foodId, customerId, quantity, state } = req.body
+    const agregarComida = await addFoodToOrder(orderId, foodId, customerId, quantity, state)
     res.status(201).json(agregarComida)
 })
 //Modifica de menu lo que quieras

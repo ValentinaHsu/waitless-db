@@ -45,7 +45,7 @@ model OrderFoodbyCustumer {
   order      Order    @relation(fields: [orderId], references: [id])
   food       Food     @relation(fields: [foodId], references: [id])
   customer   Customer @relation(fields: [customerId], references: [id])
-  // ... other fields related to this relation if needed
+  state      String 
 }
 
 model Table {
