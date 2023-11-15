@@ -1,19 +1,21 @@
 import express from 'express';
 import cors from "cors"
-import { getAllFoodWithPrisma, 
-    getFoodWithPrisma, 
-    createFoodWithPrisma, 
-    updateFoodWithPrisma, 
-    deleteFoodWithPrisma, 
-    addFoodToOrder, 
-    getAllOrderWithPrisma, 
-    getAllCommandWithPrisma, 
-    getCommandWithPrismaByID, 
-    getCommandWithPrismaByTable, 
-    createCommandWithPrisma, 
-    deleteCommandWithPrisma, 
-    getAllOrderByCustomer, 
-    getOrderByCustomerByID } from '../index.js'
+import {
+    getAllFoodWithPrisma,
+    getFoodWithPrisma,
+    createFoodWithPrisma,
+    updateFoodWithPrisma,
+    deleteFoodWithPrisma,
+    addFoodToOrder,
+    getAllOrderWithPrisma,
+    getAllCommandWithPrisma,
+    getCommandWithPrismaByID,
+    getCommandWithPrismaByTable,
+    createCommandWithPrisma,
+    deleteCommandWithPrisma,
+    getAllOrderByCustomer,
+    getOrderByCustomerByID
+} from '../index.js'
 
 const app = express();
 const PORT = 3002;
@@ -78,9 +80,9 @@ app.get("/orders", async (req, res) => {
 app.get("/ordersByCustomer", async (req, res) => {
     const orderByCustomer = await getAllOrderByCustomer()
     if (!orderByCustomer) {
-        throw new Error("The order list is empty")
+        throw new Error("The orderByCustomer list is empty")
     }
-    res.json(orderByCustomer )
+    res.json(orderByCustomer)
 })
 app.get("/orderByCustomer/:id", async (req, res) => {
     const id = parseInt(req.params.id)

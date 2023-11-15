@@ -286,7 +286,7 @@ export const getCommandWithPrismaByTable = async (table) => {
 
         if (!getCommand) return console.log("command not found")
         if (getCommand.lenght > 1) return getCommand[-1]
-        
+
         return getCommand
     } catch (error) {
         console.log(error)
@@ -346,7 +346,7 @@ export const getAllOrderByCustomer = async (req, res) => {
 }
 export const getOrderByCustomerByID = async (id) => {
     try {
-        const getOrderByCustomerByID = await prisma.orderFoodbyCustumer.findUnique({
+        const getOrderByCustomerByID = await prisma.orderFoodbyCustumer.findMany({
             where: {
                 id: id
             }
