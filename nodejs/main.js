@@ -1,4 +1,3 @@
-import bodyParser from 'body-parser';
 import express from 'express';
 import cors from "cors"
 import { getAllFoodWithPrisma, 
@@ -19,7 +18,6 @@ import { getAllFoodWithPrisma,
 const app = express();
 const PORT = 3002;
 
-app.use(bodyParser.json());
 app.use(express.json())
 app.use(cors())
 
@@ -99,8 +97,8 @@ app.post("/menu", async (req, res) => {
     res.status(201).json(nuevoPedido)
 })
 app.post("/ordersFood", async (req, res) => {
-
-    const { orderId, foodId, customerId, quantity, state } = req.body
+    const { orderId, foodId, customerId, quantity, state } = req.body;
+    console.log(req.body);
     const agregarComida = await addFoodToOrder(orderId, foodId, customerId, quantity, state)
     res.status(201).json(agregarComida)
 })

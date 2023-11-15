@@ -61,6 +61,7 @@ model Waiter {
   id     Int     @id @default(autoincrement())
   name   String
   tables Table[]
+  email String
 }
 
 model Commands {
