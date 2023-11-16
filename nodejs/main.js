@@ -14,7 +14,9 @@ import {
     createCommandWithPrisma,
     deleteCommandWithPrisma,
     getAllOrderByCustomer,
-    getOrderByCustomerByID
+    getOrderByCustomerByID,
+    getOrderByCommand,
+    getOrderByCustomerByOrderID
 } from '../index.js'
 
 const app = express();
@@ -77,13 +79,6 @@ app.get("/orders", async (req, res) => {
     }
     res.json({ message: "Success", data: orders })
 })
-app.get("/ordersByCustomer", async (req, res) => {
-    const orderByCustomer = await getAllOrderByCustomer()
-    if (!orderByCustomer) {
-        throw new Error("The orderByCustomer list is empty")
-    }
-    res.json(orderByCustomer)
-})
 app.get("/orderByCustomer/:id", async (req, res) => {
     const id = parseInt(req.params.id)
     const orderByCustomer = await getOrderByCustomerByID(id)
@@ -92,6 +87,12 @@ app.get("/orderByCustomer/:id", async (req, res) => {
     }
     res.json(orderByCustomer)
 })
+// app.get("foodFromCommand/:id", async (req, res) => {
+//     const orders = await getOrderByCommand(id)
+//     const orderids = orders.map(item => item.id)
+//     const ordersFromOrdersId = await getOrderByCustomerByOrderID(orderids)
+//     const foodIds = ordersFromOrdersId.map(item => item.foodId); 
+// })
 //Agrega a menu lo que quieras
 app.post("/menu", async (req, res) => {
     const { title, contents } = req.body

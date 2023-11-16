@@ -293,6 +293,40 @@ export const getCommandWithPrismaByTable = async (table) => {
     }
 }
 
+export const getOrderByCommand = async (commandId) => {
+    try {
+        const getOrders = await prisma.order.findMany({
+            where: {
+                commandsId: commandId
+            }
+        })
+
+        if (!getOrders) return console.log("orders not found")
+        if (getOrders.lenght > 1) return getOrders[-1]
+
+        return getOrders
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const getFoodFromOrder = async (Id) => {
+    try {
+        const getOrders = await prisma.order.findMany({
+            where: {
+                commandsId: commandId
+            }
+        })
+
+        if (!getOrders) return console.log("orders not found")
+        if (getOrders.lenght > 1) return getOrders[-1]
+
+        return getOrders
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 export const createCommandWithPrisma = async (id, sendedAt, total, table) => {
     try {
         const createCommand = await prisma.commands.create({
@@ -359,6 +393,23 @@ export const getOrderByCustomerByID = async (id) => {
         console.log(error)
     }
 }
+
+export const getOrderByCustomerByOrderID = async (id) => {
+    try {
+        const getOrderByCustomerByOrderID = await prisma.orderFoodbyCustumer.findMany({
+            where: {
+                orderId: id
+            }
+        })
+
+        if (!getOrderByCustomerByOrderID) return console.log("OrderByOrderId not found")
+
+        return getOrderByCustomerByOrderID
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 export const addFoodToOrder = async (orderId, foodId, customerId, quantity, state) => {
     try {
 
