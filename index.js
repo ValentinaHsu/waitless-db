@@ -292,6 +292,26 @@ export const getCommandWithPrismaByTable = async (table) => {
         console.log(error)
     }
 }
+export const getFoodsByCommandId = async (commandId) => {
+    try {
+        const foods = await prisma.order.findMany({
+            where: {
+                commandsId: commandId,
+            },
+            include: {
+                orderFoodByCostumer: {
+                    include: {
+                        food: true,
+                    },
+                },
+            },
+        });
+        return foods;
+    } catch (error) {
+        console.error('Error fetching foods by command ID:', error);
+        throw error;
+    }
+}
 
 // export const getOrderByCommand = async (commandId) => {
 //     try {
@@ -326,27 +346,6 @@ export const getCommandWithPrismaByTable = async (table) => {
 //         console.log(error)
 //     }
 // }
-
-export const getFoodsByCommandId = (commandId) => {
-    try {
-        const foods = await prisma.order.findMany({
-            where: {
-                commandsId: commandId,
-            },
-            include: {
-                orderFoodByCostumer: {
-                    include: {
-                        food: true,
-                    },
-                },
-            },
-        });
-        return foods;
-    } catch (error) {
-        console.error('Error fetching foods by command ID:', error);
-        throw error;
-    }
-}
 
 export const createCommandWithPrisma = async (id, sendedAt, total, table) => {
     try {
