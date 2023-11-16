@@ -301,7 +301,7 @@ export const getFoodsByCommandId = async (commandId) => {
             include: {
                 orderFoodByCostumer: {
                     include: {
-                        food: true,
+                        foodId: true,
                     },
                 },
             },
