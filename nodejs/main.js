@@ -15,8 +15,6 @@ import {
     deleteCommandWithPrisma,
     getAllOrderByCustomer,
     getOrderByCustomerByID,
-    getOrderByCommand,
-    getOrderByCustomerByOrderID,
     getFoodsByCommandId
 } from '../index.js'
 
