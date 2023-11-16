@@ -293,37 +293,58 @@ export const getCommandWithPrismaByTable = async (table) => {
     }
 }
 
-export const getOrderByCommand = async (commandId) => {
+// export const getOrderByCommand = async (commandId) => {
+//     try {
+//         const getOrders = await prisma.order.findMany({
+//             where: {
+//                 commandsId: commandId
+//             }
+//         })
+
+//         if (!getOrders) return console.log("orders not found")
+//         if (getOrders.lenght > 1) return getOrders[-1]
+
+//         return getOrders
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }
+
+// export const getFoodFromOrder = async (Id) => {
+//     try {
+//         const getOrders = await prisma.order.findMany({
+//             where: {
+//                 commandsId: commandId
+//             }
+//         })
+
+//         if (!getOrders) return console.log("orders not found")
+//         if (getOrders.lenght > 1) return getOrders[-1]
+
+//         return getOrders
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }
+
+export const getFoodsByCommandId = (commandId) => {
     try {
-        const getOrders = await prisma.order.findMany({
+        const foods = await prisma.order.findMany({
             where: {
-                commandsId: commandId
-            }
-        })
-
-        if (!getOrders) return console.log("orders not found")
-        if (getOrders.lenght > 1) return getOrders[-1]
-
-        return getOrders
+                commandsId: commandId,
+            },
+            include: {
+                orderFoodByCostumer: {
+                    include: {
+                        food: true,
+                    },
+                },
+            },
+        });
+        return foods;
     } catch (error) {
-        console.log(error)
-    }
-}
-
-export const getFoodFromOrder = async (Id) => {
-    try {
-        const getOrders = await prisma.order.findMany({
-            where: {
-                commandsId: commandId
-            }
-        })
-
-        if (!getOrders) return console.log("orders not found")
-        if (getOrders.lenght > 1) return getOrders[-1]
-
-        return getOrders
-    } catch (error) {
-        console.log(error)
+        console.error('Error fetching foods by command ID:', error);
+        throw error;
     }
 }
 

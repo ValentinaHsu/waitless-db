@@ -16,7 +16,8 @@ import {
     getAllOrderByCustomer,
     getOrderByCustomerByID,
     getOrderByCommand,
-    getOrderByCustomerByOrderID
+    getOrderByCustomerByOrderID,
+    getFoodsByCommandId
 } from '../index.js'
 
 const app = express();
@@ -87,12 +88,17 @@ app.get("/orderByCustomer/:id", async (req, res) => {
     }
     res.json(orderByCustomer)
 })
-// app.get("foodFromCommand/:id", async (req, res) => {
-//     const orders = await getOrderByCommand(id)
-//     const orderids = orders.map(item => item.id)
-//     const ordersFromOrdersId = await getOrderByCustomerByOrderID(orderids)
-//     const foodIds = ordersFromOrdersId.map(item => item.foodId); 
-// })
+app.get("foodFromCommand/:commandId", async (req, res) => {
+    const commandId = parseInt(req.params.commandId)
+    const orders = await getFoodsByCommandId(commandId)
+    if (!orders) {
+        throw new Error("Error fetching food from Commands")
+    }
+    res.json(orders)
+    //     const orderids = orders.map(item => item.id)
+    //     const ordersFromOrdersId = await getOrderByCustomerByOrderID(orderids)
+    //     const foodIds = ordersFromOrdersId.map(item => item.foodId); 
+})
 //Agrega a menu lo que quieras
 app.post("/menu", async (req, res) => {
     const { title, contents } = req.body
