@@ -132,14 +132,14 @@ export const getOrderByPrismaID = async (id) => {
     }
 }
 
-export const createOrderWithPrisma = async () => {
+export const createNullOrderWithPrisma = async (commandId) => {
     try {
         const createOrder = await prisma.order.create({
             data: {
                 id: id,
                 aclaration: null,
                 sendedAt: null,
-                commandsId: command
+                commandsId: commandId
             }
         })
         if (!createOrder) return console.log("not food found")
