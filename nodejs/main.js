@@ -6,6 +6,7 @@ import {
     createFoodWithPrisma,
     updateFoodWithPrisma,
     deleteFoodWithPrisma,
+    createOrderWithPrisma,
     addFoodToOrder,
     getAllOrderWithPrisma,
     getAllCommandWithPrisma,
@@ -54,7 +55,12 @@ app.get("/orderes", async (req, res) => {
     }
     res.json({ message: "Success", data: orders })
 })
-
+app.post("/createOrder", async (req, res) => {
+    const { id, sendedAt, aclaration, commandsId } = req.body;
+    console.log(req.body);
+    const crearPedido = await createOrderWithPrisma(id, sendedAt, aclaration, commandsId)
+    res.status(201).json(crearPedido)
+})
 app.get("/command/:id", async (req, res) => {
     const id = parseInt(req.params.id)
     const command = await getCommandWithPrismaByID(id)
