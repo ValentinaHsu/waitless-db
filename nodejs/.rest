@@ -1,1 +1,1 @@
-GET http://localhost:3002/orders-with-prices
+GET http://localhost:3002/menu/1
