@@ -2,7 +2,7 @@
   "name": "nodejs",
   "version": "1.0.0",
   "description": "",
-  "main": "nodejs/main2.js",
+  "main": "nodejs/main.js",
   "type": "module",
   "scripts": {
     "dev": "npx nodemon main.js"
