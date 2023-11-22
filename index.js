@@ -136,10 +136,12 @@ export const getOrderByCommand = async (commandsId) => {
     try {
         const getOrder = await prisma.order.findMany({
             where: {
-                commandsId: commandsId
-            }
-        })
-
+                commandsId: commandsId,
+            },
+            select: {
+                id: true,
+            },
+        });
         if (!getOrder) return console.log("orderByCommand not found")
 
         return getOrder
