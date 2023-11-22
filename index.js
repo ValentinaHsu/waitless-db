@@ -132,6 +132,22 @@ export const getOrderByPrismaID = async (id) => {
     }
 }
 
+export const getOrderByCommand = async (commandId) => {
+    try {
+        const getOrder = await prisma.order.findUnique({
+            where: {
+                commandsid: commandId
+            }
+        })
+
+        if (!getOrder) return console.log("orderByCommand not found")
+
+        return getOrder
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 export const createNullOrderWithPrisma = async (commandId) => {
     try {
         const createOrder = await prisma.order.create({
@@ -446,7 +462,7 @@ export const addFoodToOrder = async (orderId, foodId, description, price, custom
                     }
                 },
                 description: {
-                   
+
                     //descrition
                 },
                 price: {

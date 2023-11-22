@@ -9,6 +9,7 @@ import {
     createNullOrderWithPrisma,
     addFoodToOrder,
     getAllOrderWithPrisma,
+    getOrderByCommand,
     getAllCommandWithPrisma,
     getCommandWithPrismaByID,
     getCommandWithPrismaByTable,
@@ -48,13 +49,16 @@ app.get("/orders/:id", async (req, res) => {
     }
     res.json(orders)
 })
-app.get("/orderes", async (req, res) => {
-    const orders = await getAllOrderWithPrisma()
+
+app.get("/orderByCommand/:commandId", async (req, res) => {
+    const commandId = parseInt(req.params.commandId)
+    const orders = await getOrderByCommand(commandId)
     if (!orders) {
-        throw new Error("The order list is empty")
+        throw new Error("The order for this command is empty")
     }
-    res.json({ message: "Success", data: orders })
+    res.json(orders)
 })
+
 app.post("/createOrder", async (req, res) => {
     const { id, sendedAt, aclaration, commandsId } = req.body;
     console.log(req.body);
