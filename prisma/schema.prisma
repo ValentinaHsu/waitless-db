@@ -45,7 +45,7 @@ model OrderFoodbyCustumer {
   order      Order    @relation(fields: [orderId], references: [id])
   food       Food     @relation(fields: [foodId], references: [id])
   customer   Customer @relation(fields: [customerId], references: [id])
-  state      String 
+  state      String
 }
 
 model Table {
@@ -61,7 +61,7 @@ model Waiter {
   id     Int     @id @default(autoincrement())
   name   String
   tables Table[]
-  email String
+  email  String
 }
 
 model Commands {
