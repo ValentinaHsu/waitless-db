@@ -8,13 +8,12 @@ import {
     deleteFoodWithPrisma,
     createNullOrderWithPrisma,
     addFoodToOrder,
+    getOrderByPrismaID,
     getAllOrderWithPrisma,
     getOrderByCommand,
     getAllCommandWithPrisma,
     getCommandWithPrismaByID,
     getCommandWithPrismaByTable,
-    createCommandWithPrisma,
-    deleteCommandWithPrisma,
     getAllOrderByCustomer,
     getOrderByCustomerByID,
     getFoodsByCommandId
@@ -44,19 +43,17 @@ app.get("/menu/:id", async (req, res) => {
 app.get("/orders/:id", async (req, res) => {
     const id = parseInt(req.params.id)
     const orders = await getOrderByPrismaID(id)
-    if (!orders) {
-        throw new Error("The order is empty")
-    }
     res.json(orders)
 })
 
-app.get("/orderByCommand/:commandId", async (req, res) => {
-    const commandId = parseInt(req.params.commandId)
-    const orders = await getOrderByCommand(commandId)
+app.get("/orderByCommand/:commandsId", async (req, res) => {
+    const commandsId = parseInt(req.params.commandsId)
+    const orders = await getOrderByCommand(commandsId)
     if (!orders) {
-        throw new Error("The order for this command is empty")
+        throw new Error("aaaaaaaaaaaaaaa")
     }
     res.json(orders)
+    console.log(orders)
 })
 
 app.post("/createOrder", async (req, res) => {

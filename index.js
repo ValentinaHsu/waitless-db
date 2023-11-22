@@ -132,11 +132,11 @@ export const getOrderByPrismaID = async (id) => {
     }
 }
 
-export const getOrderByCommand = async (commandId) => {
+export const getOrderByCommand = async (commandsId) => {
     try {
-        const getOrder = await prisma.order.findUnique({
+        const getOrder = await prisma.order.findMany({
             where: {
-                commandsid: commandId
+                commandsId: commandsId
             }
         })
 
