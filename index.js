@@ -429,7 +429,7 @@ export const getOrderByCustomerByOrderID = async (id) => {
     }
 }
 
-export const addFoodToOrder = async (orderId, foodId, customerId, quantity, state) => {
+export const addFoodToOrder = async (orderId, foodId, description, price, customerId, quantity, state) => {
     try {
 
         const newFood = await prisma.orderFoodbyCustumer.create({
@@ -443,6 +443,15 @@ export const addFoodToOrder = async (orderId, foodId, customerId, quantity, stat
                 food: {
                     connect: {
                         id: parseInt(foodId)
+                    }
+                },
+                description: {
+                   
+                    //descrition
+                },
+                price: {
+                    connect: {
+                        id: parseInt(price)
                     }
                 },
                 customer: {
